@@ -4,7 +4,7 @@ author: "Tom Haber"
 format:
   revealjs:
     self-contained: true
-    #theme: sky
+    theme: sky
     embed-resources: true
     anchor-sections: true
     smooth-scroll: true
@@ -12,7 +12,7 @@ format:
 editor: visual
 ---
 
-##  {background-position="-20%" background-image="Pictue2-Me.png" background-size="contain"}
+##  {background-position="-20%" background-image="images/Pictue2-Me.png" background-size="contain"}
 
 ::: columns
 ::: {.column width="30%"}
@@ -91,7 +91,7 @@ editor: visual
 
 ## R studio GUI Walk through
 
-![](Picture2%20-%20R%20Icon.png)
+![](images/Picture2 - R Icon.png)
 
 ## Creating Variables {.smaller}
 
@@ -366,7 +366,7 @@ mean(y,na.rm = TRUE) # calculate mean without NA
 
 ## **Lab Time!** {.smaller}
 
-![](Lab%20Time.png){width="12in"}
+![](images/Lab%20Time.png){width="12in"}
 
 ## **Lab Questions:** {.smaller}
 
@@ -676,7 +676,7 @@ dim(auto_dta)
 
 ## **Lab Time!** {.smaller}
 
-![](Lab%20Time.png){width="12in"}
+![](images/Lab%20Time.png){width="12in"}
 
 ## **Lab Questions:** {.smaller}
 
@@ -775,7 +775,7 @@ titanic_data$Age[is.na(titanic_data$Age)] <- mean(titanic_data$Age,na.rm = TRUE)
 
 ## dplyr
 
-![dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges.](dplyr%20image.png){fig-align="center"}
+![dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges.](images/dplyr%20image.png){fig-align="center"}
 
 ## dplyr functions {.smaller}
 
@@ -801,7 +801,7 @@ glimpse(titanic_data) #### getting a first view of our data stucture
 
 ::: columns
 ::: {.column width="20%"}
-![](filter.png){width="850"}
+![](images/filter.png){width="850"}
 :::
 
 ::: {.column width="80%"}
@@ -825,7 +825,7 @@ filter(titanic_data, SibSp==0 | SibSp==1)[1:3,]
 
 ::: columns
 ::: {.column width="20%"}
-![](select.png){width="850"}
+![](images/select.png){width="850"}
 :::
 
 ::: {.column width="80%"}
@@ -844,7 +844,7 @@ select(titanic_data, PassengerId:Pclass,contains("T"))[1:4,]
 
 ## Pipeline
 
-![The %\>% operator in dplyr in R is used to chain data manipulation operations for a more readable and streamlined workflow.](pipeline.png){fig-align="center" width="62"}
+![The %\>% operator in dplyr in R is used to chain data manipulation operations for a more readable and streamlined workflow.](images/pipeline.png){fig-align="center" width="62"}
 
 ```{r,echo=TRUE}
 # How would you Select Passenge,Survived and Pclass columns and filter for Pclass 1 or 2
@@ -860,7 +860,7 @@ titanic_data %>%
 
 ::: columns
 ::: {.column width="20%"}
-![](arrange1.png){width="850"} ![](arrange2.png){width="850"}
+![](images/arrange1.png){width="850"} ![](images/arrange2.png){width="850"}
 :::
 
 ::: {.column width="80%"}
@@ -893,7 +893,7 @@ titanic_data %>%
 
 ::: columns
 ::: {.column width="20%"}
-![](mutate.png){width="850"}
+![](images/mutate.png){width="850"}
 :::
 
 ::: {.column width="80%"}
@@ -919,7 +919,7 @@ titanic_data %>%
 
 ::: columns
 ::: {.column width="20%"}
-![](groupby1.png){width="850"} ![](groupby2.png){width="850"}
+![](images/groupby1.png){width="850"} ![](images/groupby2.png){width="850"}
 :::
 
 ::: {.column width="80%"}
@@ -961,7 +961,7 @@ titanic_data %>%
 
 ## **Lab Time!** {.smaller}
 
-![](Lab%20Time.png){width="12in"}
+![](images/Lab%20Time.png){width="12in"}
 
 ## **Lab Questions:** {.smaller}
 
