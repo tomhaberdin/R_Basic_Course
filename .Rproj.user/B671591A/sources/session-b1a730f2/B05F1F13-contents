@@ -1,0 +1,1045 @@
+---
+title: "R - Beginners Course"
+author: "Tom Haber"
+format:
+  revealjs:
+    self-contained: true
+    #theme: sky
+    embed-resources: true
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+editor: visual
+---
+
+##  {background-position="-20%" background-image="Pictue2-Me.png" background-size="contain"}
+
+::: columns
+::: {.column width="30%"}
+:::
+
+::: {.column width="70%"}
+### About Me
+
+-   Bachelor and Master Degree in applied statistics
+
+-   Working at Intel as a Data Scientist for the past 8 years
+
+-   R fakebook group admin -- " להמונים R"
+
+-   Organizing R meetups
+
+-   Contact : tom.haber\@intel.com
+:::
+:::
+
+## Useful Links {.smaller}
+
+::: panel-tabset
+## R
+
+-   <https://www.datacamp.com/>
+-   <https://www.dataquest.io/>
+-   <https://r4ds.had.co.nz/transform.html#grouped-mutates-and-filters>
+-   <https://www.tidytextmining.com/dtm.html>
+-   <https://www.edx.org/course/introduction-to-r-for-data-science-2>
+-   <https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf>
+-   <https://rstudio.com/resources/cheatsheets/>
+
+## ggplot2
+
+-   <https://rockefelleruniversity.github.io/Plotting_In_R/r_course/presentations/singlepage/ggplot2.html>
+
+-   <https://www.r-graph-gallery.com/ggplot2-package.html>
+
+-   <https://www.r-graph-gallery.com/ggplot2-package.html>
+
+## Data Analysis
+
+-   <http://www.cookbook-r.com/Statistical_analysis/>
+-   <https://r4ds.had.co.nz/transform.html>
+:::
+
+## Agenda {.larger}
+
+-   Basic R : Learn first steps with R
+
+-   Data Manipulation Using 'dplyr' package (Maybe)
+
+## Basic R - Agenda {.smaller}
+
+::: columns
+::: {.column width="50%"}
+-   R Studio GUI walk through
+-   Creating Variables
+-   R as a Calculator
+-   R environment
+-   Vectors
+-   Logical in R
+-   Subset Vectors
+:::
+
+::: {.column width="50%"}
+-   Missing Values
+-   Converting Object
+-   Factor
+-   Data Frame and Matrices
+-   Subset Frame and Matrices
+-   Loading Data
+:::
+:::
+
+## R studio GUI Walk through
+
+![](Picture2%20-%20R%20Icon.png)
+
+## Creating Variables {.smaller}
+
+```{r,echo=TRUE}
+a=5	
+# assign variable the R way 
+a<-5
+# print value
+a	
+print(a)
+#R is case sensitive so X is not the same as x.
+#Output will be object 'A' not found
+# Print(A)
+
+
+# character strings
+myname <- "Bea"
+myname
+
+# TRUE/FALSE
+mylog <- TRUE
+mylog
+```
+
+## R as a Calculator {.smaller}
+
+```{r,echo=TRUE}
+7 * (3 + 2)/2
+2^3
+sqrt(9)
+log(5)
+#Positive and negative infnity are represented with Inf and -Inf, repectively:
+1/0
+-5/0
+# In R, NaN stands for "Not a Number"
+sqrt(-4)
+```
+
+## R Environment {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# view defiened objects
+ls()
+# remove an object
+rm(a)
+# remove all objects
+rm(list = ls())
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# help from R 
+#help(log)
+example(log)
+```
+:::
+:::
+
+## Vectors - 1 {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#define a vector with c
+v <- c(4, 5, 23.8, 67) # a vector of four numbers
+v
+w <- c(14, 35)
+w
+x <- c(v, w) # add vectors together
+x
+class(x) # type of vector
+
+# vector of characters
+z <- c("yes", "no")
+z
+class(z)
+
+# logical vector
+v <- c(FALSE, FALSE, TRUE, FALSE)
+v
+class(v)
+
+# numeric and character vector
+v <- c(3, 5, "yes")
+v
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+class(v)
+
+# number and logical vector
+v <- c(3, 5, TRUE, FALSE)
+v
+class(v)
+
+
+# The function seq is used to generate  series of numbers
+
+s1 <- seq(1, 8, length = 5) # 5 equidistant numbers from 1 to 8
+s1
+
+s2 <- seq(1, 10, by = 2) # from 1 to 10 with step size 2
+s2
+seq(1, 8, length = 5) # 5 equidistant numbers from 1 to 8
+
+
+```
+:::
+:::
+
+## Vectors - 2 {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# using the : operator to create a vector
+seq(1, 10, by = 1)
+1:10
+7:3
+
+# rep functions
+rep(2, 3) # Repeat the number 2 three times
+rep(TRUE, 5)
+rep(1:4, 3) # Repeat the vector [1,2,3,4] three times
+rep(1:4, each = 3) # Each element of [1,2,3,4] is repeated 3 times
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# vector arithmetics -The operations are performed element by element. 
+v1 <- c(3, 6, 2)
+v2 <- c(1, 5, 3)
+v1 + v2
+v1 * v2
+
+#Vectors in the same expression need not all be of the same length. Shorter vectors
+#are recycled until they match the length of the longest vector
+v1 + 7
+sqrt(v1)
+
+```
+:::
+:::
+
+## Common Vector Functions {.smaller}
+
+```{r,echo=TRUE}
+
+print(x) # print again x vector
+sum(x) # sum of all the values of x
+prod(x) # product of all the values of x
+max(x) # maximum value of x
+min(x) # minimum value of x
+length(x) # length of 
+sort(x) # sort the vector x into ascending order
+mean(x) #arithmetic mean of x
+
+```
+
+## Logical in R {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+
+x <- c(3, 5, 1, 2, 7, 6, 4)
+x < 5 # is x less than 5
+x <= 5 # is x less than or equal to 5
+x > 3 # is x greater than 3
+x >= 3 # is x greater than or equal to 3
+x == 2 # is x equal to 2
+x != 2 # is x not equal to 2
+
+any(x == 2) # if any of x values match the condition
+all(x == 2) # if all values in x match the condition
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+all(x < 10)
+
+which(x == 2) # Fourth element of x is equal two 2
+which(x < 3) # Third and fourth elements of x are lower than 3
+
+
+x
+(x > 2) & (x <= 6) # is x greater than 2 and less than or equal to 6
+(x < 2) | (x > 5) # is x less than 2 or greater than 5
+!(x > 3) # not [x greater than 3]
+
+```
+:::
+:::
+
+## Subset Vector {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#In R, brackets [] indicate a subset of a larger object.
+v <- c(4, 5, 23.8, 67) # a vector of four numbers
+v
+v[3] # Third element of v
+v[2] # Second element of v
+v[-2] # All of v but the second entry
+v[c(1, 3)] # First and third elements of v
+
+# Using logical conditions to select subsets
+y <- c(5, 3, 7, 2, 9)
+y
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+ind <- y > 5 # is y greater than 5
+ind
+y[ind]
+y[y > 5]
+
+
+## change vector values
+y <- c(5, 3, 7, 2, 9)
+y[y>5] <- 100
+y
+y[1] <- 0
+y
+
+```
+:::
+:::
+
+## Missing Values {.smaller}
+
+```{r,echo=TRUE}
+
+x <- NA
+is.na(x) # returns TRUE of x is missing
+y <- c(rep(1,3),7:2,3,NA)
+is.na(y) # returns a vector of F/T
+# select values where y is 1 and change with NA
+y[y==1] <- NA
+y
+mean(y) # return error because we have NA
+mean(y,na.rm = TRUE) # calculate mean without NA
+```
+
+## **Lab Time!** {.smaller}
+
+![](Lab%20Time.png){width="12in"}
+
+## **Lab Questions:** {.smaller}
+
+1.  Write a command that extract the last element in a vector
+2.  Create the next vector : 1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1
+3.  Write a command that extract all elements in a vector which is not an NA
+4.  Write a command that changes the minimum value in a vector with 99
+5.  Write a command that reverse the order of a vector from last to first
+6.  Write a command that extract all the values in even locations For example ; for the vector (4,99,3,40,6) the result will be (99,40) -- location 2 and 4
+
+## **Lab Solutions:** {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#Q1
+x <- c(100,4,3,8) # for example extract 8
+x[length(x)]
+
+#Q2
+c(1:10, 9:1)
+
+#Q3
+x <- c(49,6,NA,NA,8,10,14,NA)
+x[!is.na(x)] 
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+#Q4
+x <- c(100,4,3,8) # will replace 3
+x[x == min(x)] <- 17 
+x
+
+#Q5
+x[length(x):1]
+
+#Q6
+x <- c(4,99,3,40,6) 
+x[seq(2, length(x), by=2)]
+
+```
+:::
+:::
+
+## Converting Object {.smaller}
+
+```{r,echo=TRUE}
+
+#converting an object from one class to a different one with "as."
+#Functions : (as.numeric, as.character, as.matrix, as.data.frame, ...)
+
+x <- c(3, 5)
+class(x)
+y <- as.character(x)
+y
+class(y)
+
+
+#"is." functions, that check whether an object is of a given class.
+is.numeric(y)
+is.character(y)
+```
+
+## Factor {.smaller}
+
+```{r,echo=TRUE}
+
+
+#The best way to represent categorical values in R is as factors, using the function factor
+blood <- c("AB", "A", "A", "B", "A", "0", "B", "B", "AB")
+fblood <- factor(blood)
+fblood
+
+# different values in the factor
+levels(fblood)
+
+nlevels(fblood) # number of levels
+
+table(fblood)
+```
+
+## data frame and matrices - 1 {.smaller}
+
+::: columns
+::: {.column width="50%"}
+-   A matrix is a collection of data elements arranged in a two-dimensional grid (rows and columns).
+-   As with vectors, all the elements of a matrix must be of the same data type.
+-   A matrix can be generated in several ways. The function matrix creates a matrix
+
+```{r,echo=TRUE}
+#from a given set of values. For example, we create a matrix with the numbers
+#from 10 to 15 with 2 rows and 3 columns.
+a <- matrix(10:15, nrow = 2, ncol = 3)
+a
+class(a)
+typeof(a)
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+
+#By default, the function matrix flls in the matrix column by column. Set the
+#argument byrow = TRUE to fll in the matrix row by row.
+b <- matrix(10:15, nrow = 2, ncol = 3, byrow = TRUE)
+b
+dim(b) # Dimension - we can view rows and columns 
+ 
+
+# create a matrice using rbind and cbind
+x <- 1:3
+y <- 7:9
+m1 <- cbind(x, y)
+m1
+m2 <- rbind(x, y)
+m2
+
+
+```
+:::
+:::
+
+## data frame and matrices - 2 {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# arithemtichs and matrices will be element by element
+a + b
+a * b # element-by-element product
+
+m2 %*% m1 # matrix multiplication
+
+
+#All elements of a matrix have the same type. Look at what happens when we
+#bind vectors of di???erent types:
+name <- c("Mike", "Jane", "Peter")
+age <- c(42, 34, 31)
+dat <- cbind(name, age)
+dat
+typeof(dat)
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# data frame can have different types- different from matrix
+dat <- data.frame(name, age)
+dat
+class(dat)
+
+# data frame structure
+str(dat)
+
+# First view of the data set
+head(dat) 
+
+# how many rows and columns we have
+ncol(dat)
+nrow(dat)
+```
+:::
+:::
+
+## Subset data frame and matrices {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+
+# from a matrix - The rows are referred to by the fןrst (left-hand) 
+#subscript and the columns by the second (right-hand)
+a <- matrix(10:15, nrow = 2, ncol = 3)
+a
+a[2, 3] # Element of a in the second row, third column
+a[2, ] # Second row of a
+a[, 3] # Third column of a
+
+# data.frame 
+name <- c("Mike", "Jane", "Peter")
+age <- c(42, 34, 31)
+dat <- data.frame(name, age)
+dat
+
+dat[2, 2] # Element of dat in the second row, second column
+dat[, 1] # First column of data frame dat
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+names(dat)
+dat$age # Variable age of data frame dat
+dat$name # Variable name of data frame dat
+
+#All three of the following lines of code produce the same result:
+dat$age
+dat[, 2]
+dat[, "age"]
+
+# from a data frame 
+
+head(cars,2) # default data in R
+cars[cars$speed >= 20,][1:3,]
+```
+:::
+:::
+
+## List {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+
+#A list is a collection of objects
+
+mylist <- list(s1, dat, fblood) # vector, data.frame and factor
+mylist
+class(mylist)
+
+# we can give names for each element in the list
+mylist <- list(sequence = s1, people = dat, bloodtype = fblood)
+names(mylist)
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#You can access an item in the list with [[]] or $ by using the element name
+mylist[[3]]
+mylist$bloodtype
+
+# structure of our list
+str(mylist)
+
+```
+:::
+:::
+
+## Loading Data - 1 {.smaller}
+
+```{r,echo=TRUE}
+# setting working directory to extract data from
+setwd("C:/Users/tomhaber/OneDrive - Intel Corporation/Desktop/Current Work Animation Studio/Presentation/Intel R course/Upload Data Basic R")
+
+# loading txt 
+carbon_txt <- read.table("carbon.txt",sep="\t",header = TRUE)
+names(carbon_txt)[1:5]
+dim(carbon_txt)
+
+# loading csv 
+titanic_csv <- read.csv("titanic.csv",header = TRUE)
+names(titanic_csv)[1:5] # first 5 columns names 
+dim(titanic_csv) # number of rows and columns
+
+# loading xlsx
+#install.packages("readxl")
+library(readxl)
+titanic_xlsx <- read_xlsx("titanic.xlsx",sheet = 1)
+names(titanic_xlsx)[1:5]
+dim(titanic_xlsx)
+
+
+
+```
+
+## Loading Data - 2 {.smaller}
+
+```{r,echo=TRUE}
+
+# setting working directory to extract data from
+setwd("C:/Users/tomhaber/OneDrive - Intel Corporation/Desktop/Current Work Animation Studio/Presentation/Intel R course/Upload Data Basic R")
+
+# loading spss
+#install.packages("Hmisc")
+library(Hmisc)
+survey_spss <- spss.get("survey.sav", use.value.labels=TRUE)
+names(survey_spss)[1:5]
+dim(survey_spss)
+
+# loading stata
+#install.packages("foreign")
+library(foreign)
+auto_dta <- read.dta("auto.dta")
+names(auto_dta)[1:5]
+dim(auto_dta)
+
+### write.csv for saving data as a csv format
+
+
+```
+
+## **Lab Time!** {.smaller}
+
+![](Lab%20Time.png){width="12in"}
+
+## **Lab Questions:** {.smaller}
+
+1.  Create your own matrix and replace all values of the first two columns in your matrix with "NA".
+2.  Create a list containing 1 character vector, a numeric vector, a character matrix.
+3.  Create a data frame and add it to the list.
+4.  Create a matrix and output a TRUE checking if the number of rows are more then the number of columns.
+5.  mtcars is a default data.frame in R, extract the mpg column and calculate its mean.
+6.  Add a new column to the mtcars indicating if the cyl value is above 5 or not, the column will be a T/F vector.
+7.  Create a new data.frame containing only the 3,5,and 7 row from mtcars table.
+8.  Upload the titanic csv file where columns are not factor (use the help function).
+9.  Convert the Pclass column to Factor from the titanic data.
+10. Calculate how many NA we have in the Age column and replace them with the mean value.
+
+## **Lab Solutions 1-5:** {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+ #Q1
+x <- matrix(1:9,nrow = 3,ncol = 3)
+x[,1:2] <- NA
+x
+
+
+ #Q2
+list.2 <- list(vec1 = c("hi", "ho", "merry", "christmas"), vec2 = 4:19, mat1 = matrix(as.character(100:81), nrow = 4))
+list.2
+
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#Q3
+df <- data.frame(matrix(1:9))
+list.2[[4]] <- df
+
+#Q4
+x <- matrix(1:6)
+nrow(x) > ncol(x)
+
+#Q5
+mean(mtcars$mpg)
+
+
+```
+:::
+:::
+
+## **Lab Solutions 6-10:** {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+#Q6
+head(cbind(mtcars,mtcars$cyl>5))[1:3]
+
+mtcars$cyl_above_5 <- mtcars$cyl>5
+
+head(mtcars,3)
+
+#Q7
+rbind(mtcars[3,],mtcars[5,],mtcars[7,])
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# titanic questions
+#Q8
+setwd("C:/Users/tomhaber/OneDrive - Intel Corporation/Desktop/Current Work Animation Studio/Presentation/Intel R course/Upload Data Basic R")
+
+titanic_data <- read.csv("titanic.csv",stringsAsFactors = FALSE)
+
+#Q9
+head(titanic_data$Pclass) # view before changing to factor
+titanic_data$Pclass <- as.factor(titanic_data$Pclass)
+head(titanic_data$Pclass) # view after changing to factor
+
+#Q10
+sum(is.na(titanic_data$Age)) 
+titanic_data$Age[is.na(titanic_data$Age)] <- mean(titanic_data$Age,na.rm = TRUE)
+
+
+```
+:::
+:::
+
+## dplyr
+
+![dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges.](dplyr%20image.png){fig-align="center"}
+
+## dplyr functions {.smaller}
+
+::: panel-tabset
+## Convert
+
+```{r,echo=TRUE}
+
+setwd("C:/Users/tomhaber/OneDrive - Intel Corporation/Desktop/Current Work Animation Studio/Presentation/Intel R course/Upload Data Basic R")
+
+titanic_data <- read.csv("titanic.csv",stringsAsFactors = FALSE)
+
+#install.packages("dplyr") # installing and loading dplyr
+library(dplyr)
+
+titanic_data <- tbl_df(titanic_data) # converting data to dplyr tabel 
+
+glimpse(titanic_data) #### getting a first view of our data stucture
+
+```
+
+## filter
+
+::: columns
+::: {.column width="20%"}
+![](filter.png){width="850"}
+:::
+
+::: {.column width="80%"}
+```{r,echo=TRUE}
+
+#Base R approach - extracting first rows by multiple column condition
+titanic_data[titanic_data$Pclass==1 & titanic_data$Survived==0, ][1:2,]
+
+#Compare to dplyr appraoch
+#Note: you can use comma or ampersand to represent AND condition
+filter(titanic_data, Pclass==1, Survived==0)[1:2,]
+
+#Use | or OR for OR condition
+filter(titanic_data, SibSp==0 | SibSp==1)[1:3,]
+
+```
+:::
+:::
+
+## Select
+
+::: columns
+::: {.column width="20%"}
+![](select.png){width="850"}
+:::
+
+::: {.column width="80%"}
+```{r,echo=TRUE}
+#Base R approach to select Name, Sex, and Fare columns
+titanic_data[, c("Name", "Sex", "Fare")][1:3,]
+
+#- dplyr approach:
+select(titanic_data, Name, Sex, Fare)[1:3,]
+
+# Selecting features from ID to Pclass and all features with "T" in their names
+select(titanic_data, PassengerId:Pclass,contains("T"))[1:4,]
+```
+:::
+:::
+
+## Pipeline
+
+![The %\>% operator in dplyr in R is used to chain data manipulation operations for a more readable and streamlined workflow.](pipeline.png){fig-align="center" width="62"}
+
+```{r,echo=TRUE}
+# How would you Select Passenge,Survived and Pclass columns and filter for Pclass 1 or 2
+head(filter(select(titanic_data, PassengerId:Pclass), Pclass==1 | Pclass==2),3)
+
+titanic_data %>%
+  select(PassengerId:Pclass) %>%
+  filter(Pclass==1 | Pclass==2) %>%
+  head(3)
+```
+
+## Arrange
+
+::: columns
+::: {.column width="20%"}
+![](arrange1.png){width="850"} ![](arrange2.png){width="850"}
+:::
+
+::: {.column width="80%"}
+```{r,echo=TRUE}
+
+# base R approach to select Age,Survived and Pclass columns and sort by Age:
+titanic_data[order(titanic_data$Age), c("Age","Survived", "Pclass")][1:2,]
+
+# dplyr approach
+titanic_data %>%
+  select(Age, Survived,Pclass) %>%
+  arrange(Age) %>% 
+  head(2)
+
+titanic_data %>%
+  select(Age, Survived,Pclass) %>%
+  arrange(desc(Age)) %>% 
+  head(2)
+
+titanic_data %>%
+  select(Age, Survived,Pclass) %>%
+  arrange(desc(Survived),Pclass) %>% 
+  head(3)
+
+```
+:::
+:::
+
+## Mutate
+
+::: columns
+::: {.column width="20%"}
+![](mutate.png){width="850"}
+:::
+
+::: {.column width="80%"}
+```{r,echo=TRUE}
+# Base R code
+titanic_data$Family_Count <- titanic_data$SibSp+titanic_data$Parch
+titanic_data[, c("Family_Count", "Parch","SibSp")][1:2,]
+
+#dplyr approach
+titanic_data %>%
+  select(Parch,SibSp) %>%
+  mutate(Family_Count = Parch+SibSp) %>% head(2)
+
+titanic_data %>%
+  select(Parch,SibSp) %>%
+  mutate(Family_Count = Parch+SibSp) %>% head(3)
+
+```
+:::
+:::
+
+## summarise
+
+::: columns
+::: {.column width="20%"}
+![](groupby1.png){width="850"} ![](groupby2.png){width="850"}
+:::
+
+::: {.column width="80%"}
+```{r,echo=TRUE}
+# R Base Function
+mean(titanic_data$Age,na.rm=TRUE)
+mean(titanic_data$Fare)
+
+#Summarise the Age and Fare column
+titanic_data %>%
+  summarise(mean_Age = mean(Age,na.rm=TRUE),mean_Fare=mean(Fare))
+
+#Summarise the Age and Fare column by the Survived and Pclass columns
+titanic_data %>%
+  group_by(Survived,Pclass) %>%
+  summarise(mean_Age = mean(Age,na.rm=TRUE),mean_Fare=mean(Fare)) %>%
+  head(4)
+
+```
+:::
+:::
+:::
+
+## All Together {.smaller}
+
+```{r,echo=TRUE}
+#Using all dplyr functions together - filtering on Fare larger then 30,calculating Age by Sex and Survived, 
+#sorting by the age mean and creating a new age difference column
+
+titanic_data %>%
+  filter(Fare>30) %>%
+  group_by(Sex,Survived) %>%
+  summarise(mean_Age = mean(Age,na.rm=TRUE),mean_Fare=mean(Fare),min_Age=min(Age,na.rm=TRUE),
+            max_Age=max(Age,na.rm=TRUE)) %>%
+  arrange(desc(mean_Age)) %>%
+  mutate(age_difference=max_Age-min_Age)
+
+```
+
+## **Lab Time!** {.smaller}
+
+![](Lab%20Time.png){width="12in"}
+
+## **Lab Questions:** {.smaller}
+
+For this set of questions upload the "auto.dta" stata file.
+
+1.  Convert the data to dplyr table and print the table.
+
+2.  Print the first 3 rows of the table without the 'length' and 'turn' columns. (you can use the "-" sign to unselect a column)
+
+3.  Calculate the mpg mean for only the "Domestic" cars.
+
+4.  Create a new column which is the division of the price over gear_ratio, print the first 5 rows of only the make, price,gear_ratio and the new column.
+
+5.  Calculate the mean of price for "Domestic" and "Foreign" cars
+
+6.  Print the car with the highest price
+
+7.  Only for cars with weight above 3000, select the make and headroom up to turn columns.Sort it by the length column in decreasing way.
+
+## **Lab Solutions :** {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+# loading stata data
+setwd("C:/Users/tomhaber/OneDrive - Intel Corporation/Desktop/Current Work Animation Studio/Presentation/Intel R course/Upload Data Basic R")
+
+library(foreign)
+auto_dta <- read.dta("auto.dta")
+
+#Q1
+auto_dta <- tbl_df(auto_dta)
+
+#Q2
+#auto_dta %>% 
+#  select(-length,-turn) %>%
+
+#Q3
+auto_dta %>%
+  filter(foreign=="Domestic") %>%
+  summarise(mean_mpg=mean(mpg))
+
+#Q4
+auto_dta %>% 
+  mutate(price_by_gear_ration=price/gear_ratio) %>% 
+  select(make,price,gear_ratio,price_by_gear_ration) %>%
+  head(1)
+
+
+```
+:::
+
+::: {.column width="50%"}
+```{r,echo=TRUE}
+
+#Q5
+auto_dta %>%
+  group_by(foreign) %>% 
+  summarise(mean_price=mean(price))
+
+#Q6
+ auto_dta %>% 
+   filter(price==max(price)) %>%
+   select(make)
+
+#Q7
+ auto_dta %>%
+   filter(weight>3000) %>% 
+   select(make,headroom:turn) %>% 
+   arrange(desc(length)) %>% 
+   head(3)
+
+
+```
+:::
+:::
+
+## Thats All ! {.smaller style="text-align: center;"}
+
+![](https://tenor.com/view/seinfeld-nice-happy-excited-jumping-gif-12196877.gif){fig-align="center"}
