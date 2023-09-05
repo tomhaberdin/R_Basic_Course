@@ -33,6 +33,18 @@ editor: visual
 :::
 :::
 
+## **Why use R?** {.smaller}
+
+-   **Statistical Powerhouse**: R excels in statistical and data analysis.
+
+-   **Open Source & Community**: It's open source and supported by a vibrant community.
+
+-   **Robust Data Visualization**: R is renowned for its data visualization capabilities.
+
+-   **Flexible Data Manipulation**: R provides powerful tools for data manipulation.
+
+-   **Empowering Reports with R Markdown, Quarto, and Shiny**: R enables dynamic reporting and interactive Shiny apps.
+
 ## Useful Links {.smaller}
 
 ::: panel-tabset
@@ -42,22 +54,23 @@ editor: visual
 -   <https://www.dataquest.io/>
 -   <https://r4ds.had.co.nz/transform.html#grouped-mutates-and-filters>
 -   <https://www.tidytextmining.com/dtm.html>
--   <https://www.edx.org/course/introduction-to-r-for-data-science-2>
+-   <https://www.edx.org/learn/r-programming/harvard-university-data-science-r-basics>
 -   <https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf>
 -   <https://rstudio.com/resources/cheatsheets/>
 
 ## ggplot2
 
--   <https://rockefelleruniversity.github.io/Plotting_In_R/r_course/presentations/singlepage/ggplot2.html>
+-   <https://ggplot2.tidyverse.org/>
 
 -   <https://www.r-graph-gallery.com/ggplot2-package.html>
 
--   <https://www.r-graph-gallery.com/ggplot2-package.html>
+-   <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
 
 ## Data Analysis
 
--   <http://www.cookbook-r.com/Statistical_analysis/>
+-   [https://www.tidyverse.org](https://www.tidyverse.org/){.uri}
 -   <https://r4ds.had.co.nz/transform.html>
+-   [http//www.cookbook-r.com/Statistical_analysis/](http://www.cookbook-r.com/Statistical_analysis/){.uri}
 :::
 
 ## Agenda {.larger}
@@ -91,7 +104,7 @@ editor: visual
 
 ## R studio GUI Walk through
 
-![](images/Picture2 - R Icon.png)
+![](images/Picture2%20-%20R%20Icon.png)
 
 ## Creating Variables {.smaller}
 

@@ -1,0 +1,7 @@
+"make","price","mpg","rep78","headroom","trunk","weight","length","turn","displacement","gear_ratio","foreign","new"
+"AMC Concord",4099,22,3,2.5,1,2930,186,40,121,3.57999992370605,"Domestic",21
+"AMC Pacer",4749,17,3,3,1,3350,173,40,258,2.52999997138977,"Domestic",21
+"AMC Spirit",3799,22,NA,3,1,2640,168,35,121,3.07999992370605,"Domestic",22
+"Buick Century",4816,20,3,4.5,1,3250,196,40,196,2.9300000667572,"Domestic",26
+"Buick Electra",7827,15,4,4,1,4080,222,43,350,2.41000008583069,"Domestic",30
+"Buick LeSabre",5788,18,3,4,1,3670,218,43,231,2.73000001907349,"Domestic",31
